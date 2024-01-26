@@ -1,0 +1,4 @@
+Készíts egy olyan programot, mely bekér egy számot, ami a tömbök hosszát adja meg és konvertálja a megadott értéket számtípussá.
+Két tömböt töltsd fel random egész számokkal 1-től 100-ig és a tömb hosszát a bekért szám határozza meg.
+Külön a két tömb értékeit add össze az összegzés tételével.
+Vizsgáld meg, hogy egyenlő-e vagy melyik a nagyobb összegű tömb és adja vissza az eredményeket.
