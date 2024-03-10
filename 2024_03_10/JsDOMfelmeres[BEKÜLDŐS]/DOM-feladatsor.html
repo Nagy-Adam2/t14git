@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="hungarian" />
+    <style type="text/css">
+        h1 {
+            text-align: center;
+        }
+
+        #kirajzoltEredmeny {
+            width: 0px;
+            height: 0px;
+            background-color: gray;
+        }
+        
+        @keyframes Megjelenes {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes Eltunes {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        #macskaKep {
+            width: 200px;
+            height: 200px;
+            animation-name: "Megjelenes";
+            animation-duration: 5s;
+            animation-fill-mode: both;
+        }
+    </style>
+    <title>DOM feladatsor</title>
+</head>
+<body>
+    <h1>DOM feladatsor</h1>
+
+
+    <!--1 feladat -->
+    <form>
+        <label for="szovegBevitel">Írj valami szöveget:</label>
+        <input type="text" id="szovegBevitel" /><p id="karakterekszam"></p>
+    </form>
+    <hr />
+
+
+    <!--2 feladat -->
+    <form>
+        <div id="kirajzoltEredmeny"></div>
+        <label for="xKoordinata">x koordináta:</label>
+        <input type="number" id="xKoordinata" value="100" />
+        <label for="yKoordinata">y koordináta:</label>
+        <input type="number" id="yKoordinata" value="100" />
+        <input type="button" id="kirajzol" value="Kirajzol" />
+    </form>
+    <hr />
+
+
+    <!--3 feladat -->
+    <button type="button" id="kepAnimacio">Macska kép animációja</button>
+    <img src="hidingCat.jpg" alt="Macska kép" title="Macska kép" id="macskaKep" />
+    <hr />
+
+
+    <!--4 feladat -->
+    <form>
+        <div id="uzenoFelulet">Visszajelző felület</div>
+        <label for="email1">E-mail cím</label>
+        <input type="email" id="email1" /><br />
+        <label for="email2">E-mail cím megerősítése</label>
+        <input type="email" id="email2" /><br />
+        <input type="button" id="ellenorzoGomb" value="E-mail címek ellenőrzése" />
+    </form>
+    <hr />
+
+    
+    <script type="text/javascript" src="DOM-feladatsor.js"></script>
+</body>
+</html>
