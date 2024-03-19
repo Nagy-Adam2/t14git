@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klikkelő játék</title>
+    <style>
+        body {
+            background-image: url('img/vilagur.svg');
+            background-size: cover;
+            cursor: none;
+            height: 120vh;
+        }
+        #ugraloAszteroida {
+            content: url('img/aszteroida.svg');
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 10%;
+            opacity: 0.8;
+            filter: opacity(80%);
+        }
+        #ugraloAszteroida:hover {
+          content: url('img/aszteroidatCelbaVett.svg');
+          opacity: 0.8;
+          filter: opacity(80%);
+        }
+        #szamlalo {
+            color: black;
+            font-weight: bold;
+            position: fixed;
+            top: 0px;
+            left: 50%;
+            width: 60px;
+            transform: translate(-25px);
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        #raketa {
+          content: url('img/raketa.svg');
+          width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ugraloAszteroida"></div>
+    <div id="szamlalo">0</div>
+    <div id="raketa"></div>
+
+    <script>
+        let elem = document.querySelector("#ugraloAszteroida");
+        elem.addEventListener("click", ugras);
+
+        function ugras() {
+
+            let randomTopErtek = Math.round(Math.random() * 768);
+            let randomLeftErtek = Math.round(Math.random() * 1620);
+            elem.style.top = randomTopErtek + "px";
+            elem.style.left = randomLeftErtek + "px";
+
+            let klikkSzam = Number(document.querySelector("#szamlalo").innerHTML) + 1;
+            document.querySelector("#szamlalo").innerHTML = klikkSzam;
+            
+        }
+        
+        let raketa = document.querySelector('#raketa');
+
+        let pozicioElem = (pozicio)=> {
+          let egerMutatoY = pozicio.clientY;
+          let egerMutatoX = pozicio.clientX;
+   
+          raketa.style.transform = `translate3d(${egerMutatoX}px, ${egerMutatoY}px, 0)`;
+ 
+        }
+
+        window.addEventListener('mousemove', pozicioElem)
+    </script>
+</body>
+
+</html>
