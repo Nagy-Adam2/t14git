@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="hungarian" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <style type="text/css">
+        body {
+            background-image: linear-gradient(to right, lightgray, lightblue);
+        }
+    </style>
+    <title>Szavazatok DOM</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Szavazatok DOM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="g0">Adatok</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g1">1. feladat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g2">2. feladat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g3">3. feladat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g4">4. feladat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g5">5. feladat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g6">6. feladat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="g7">7. feladat</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="row">
+            <div class="col text-center">
+                <h1>Szavazatok DOM</h1>
+            </div>
+        </div>
+
+
+
+
+        <!--0 feladat-->
+
+        <div id="feladatBlokk00">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col px-0">
+                    <table id="kepiseloTabla" class="table caption-top table-dark table-striped table-bordered table-hover">
+                        <caption class="bg-dark text-white fw-bold px-3">Adatok amivel dolgozunk</caption>
+                        <thead>
+                            <tr>
+                                <th>Párt/Független</th>
+                                <th>Képiselők neve</th>
+                                <th>Szavazat</th>
+                                <th>Körzet</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col px-2">
+                    <button type="button" id="feladat0" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--1 feladat-->
+
+        <div id="feladatBlokk01">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>Hány képviselőjelölt indult a helyhatósági választáson?</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-end border-dark">
+                    <p class="kepviselojeloltekMegjelenitese fs-4 fw-bold"></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <button type="button" id="feladat1" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--2 feladat-->
+
+        <div id="feladatBlokk02">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>Adott párt/függetlenként hány képviselőt indított a választáson?</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-end border-dark">
+                    <p class="partFuggetlenKepiseloiMegjelenitese fs-4 fw-bold"></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <div class="form-group">
+                        <label for="partokFuggetlenek">Párt és független</label>
+                        <select id="partokFuggetlenek" class="form-control">
+                            <option value="gyep">GYEP</option>
+                            <option value="zep">ZEP</option>
+                            <option value="hep">HEP</option>
+                            <option value="tisz">TISZ</option>
+                            <option value="-">-</option>
+                        </select>
+                    </div>
+                    <button type="button" id="feladat2" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--3 feladat-->
+
+        <div id="feladatBlokk03">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>Kérje be egy képviselőjelölt vezetéknevét és utónevét, hogy megkapd a szavazatok számát.</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-end border-dark">
+                    <p class="KepeseloiSzavazatokSzama fs-4 fw-bold"></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <div class="form-floating" my-3>  
+                        <input type="text" id="kepiseloNeve" class="form-control" placeholder="Add meg egy képíselő nevét">
+                        <label for="kepiseloNeve">Add meg egy képsilelő nevét</label>   
+                    </div>   
+                    <button type="button" id="feladat3" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--4 feladat-->
+        
+        <div id="feladatBlokk04">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>Hányan adták le szavazatukat, és mennyi volt a részvételi arány.</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-end border-dark">
+                    <p class="reszveteliAranySzavazatokban fs-4 fw-bold"></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <button type="button" id="feladat4" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--5 feladat-->
+        
+        <div id="feladatBlokk05">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>A 8 körzeten belül az adott pártokra leadott szavazatok mennyisége.</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col px-0 border-end border-dark">
+                    <table class="partokraLeadottSzavazatokMennyisege table caption-top table-dark table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Párt</th>
+                                <th>Szavazat</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <button type="button" id="feladat5" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--6 feladat-->
+        
+        <div id="feladatBlokk06">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>Melyik jelölt kapta a legtöbb szavazatot?</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-end border-dark">
+                    <p class="legtobbSzavazatotKapta fs-4 fw-bold"></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <button type="button" id="feladat6" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--7 feladat-->
+
+        <div id="feladatBlokk07">
+            <div class="row bg-secondary bg-opacity-25 border border-dark rounded-top">
+                <div class="col text-center">
+                    <h2>Határozza meg, hogy az egyes választókerületekben kik lettek a képviselők.</h2>
+                </div>
+            </div>
+            <div class="row bg-secondary bg-opacity-25 mb-4 border border-dark rounded-bottom">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-end border-dark">
+                    <p class="valasztokeruletekbenKikLettekAKepviselok fs-4 fw-bold"></p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 border-start border-dark">
+                    <button type="button" id="feladat7" class="btn btn-dark w-100 my-3">Megoldás mutatása</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/szavazatok.js"></script>
+    <script type="text/javascript" src="js/szavazatokDOM.js"></script>
+</body>
+</html>
