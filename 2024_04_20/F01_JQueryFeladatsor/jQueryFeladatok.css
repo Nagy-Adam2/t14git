@@ -1,0 +1,10 @@
+#elrejtendoElem {
+    background-color: green;
+    width: 200px;
+    height: 200px;
+    box-shadow: 5px 5px 10px black;
+}
+
+#karakterszam {
+    display: inline-block;
+}
