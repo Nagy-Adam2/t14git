@@ -1,0 +1,47 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+
+#RGBkodMegjelenito,
+#HEXAkodMegjelenito,
+#SzinkodAlapjanNevMegjelenito {
+    font-size: 200px;
+}
+
+
+@media screen and (max-width: 992px) {
+    #RGBkodMegjelenito,
+    #HEXAkodMegjelenito,
+    #SzinkodAlapjanNevMegjelenito {
+        font-size: 120px;
+    }
+}
+  
+  
+@media screen and (max-width: 768px) {
+    #RGBkodMegjelenito,
+    #HEXAkodMegjelenito,
+    #SzinkodAlapjanNevMegjelenito {
+        font-size: 60px;
+    }
+}
+
+
+#keveroFelulet {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    margin-bottom: 200px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    padding: 10px;
+    border-bottom-right-radius: 50px;
+}
