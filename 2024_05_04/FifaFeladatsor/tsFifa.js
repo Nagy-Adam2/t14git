@@ -24,12 +24,13 @@ var csapatAdat = [
 function ObjektumFeltolto(feltoltendoElem) {
     var beolvasottAdatok = [];
     for (var i = 0; i < feltoltendoElem.length; i++) {
-        var objektum = {};
         var daraboltSor = feltoltendoElem[i].split(";");
-        objektum.nev = daraboltSor[0];
-        objektum.helyezes = Number(daraboltSor[1]);
-        objektum.valtozas = Number(daraboltSor[2]);
-        objektum.pont = Number(daraboltSor[3]);
+        var objektum = {
+            nev: daraboltSor[0],
+            helyezes: Number(daraboltSor[1]),
+            valtozas: Number(daraboltSor[2]),
+            pont: Number(daraboltSor[3])
+        };
         beolvasottAdatok.push(objektum);
     }
     return beolvasottAdatok;
@@ -89,11 +90,12 @@ function AtlagFelettiek(vizsgaltTomb) {
     var atlagFelettiek = [];
     for (var i = 0; i < vizsgaltTomb.length; i++) {
         if (vizsgaltTomb[i].pont > atlagPont) {
-            var aktCsapatInfo = {};
-            aktCsapatInfo.neve = vizsgaltTomb[i].nev;
-            aktCsapatInfo.helyezese = vizsgaltTomb[i].helyezes;
-            aktCsapatInfo.rangja = vizsgaltTomb[i].valtozas;
-            aktCsapatInfo.pontja = vizsgaltTomb[i].pont;
+            var aktCsapatInfo = {
+                neve: vizsgaltTomb[i].nev,
+                helyezese: vizsgaltTomb[i].helyezes,
+                rangja: vizsgaltTomb[i].valtozas,
+                pontja: vizsgaltTomb[i].pont
+            };
             atlagFelettiek.push(aktCsapatInfo);
         }
     }
@@ -141,25 +143,23 @@ f4eventGomb.addEventListener("click", LegtobbetJavitoIndexKiir);
 //5. feladat -Határozza meg a adatok közöt megtalálható-e Magyarország csapata! 
 //Adat kiolvasása
 function OrszagNevKiolvas() {
-    var _a;
-    var orszagNev = (_a = document.querySelector("#orszagNeve")) === null || _a === void 0 ? void 0 : _a.nodeValue;
+    var orszagNev = document.querySelector("#orszagNeve").value;
     return orszagNev;
 }
-//Eredmény kiszámolása
-//Fejlesztési lehetőség: Bármely csapatot megnézni, szerepelt-e a listán
-function SzerepelEAdottOrszag(vizsgaltTomb, orszagNeve) {
-    for (var i = 0; i < vizsgaltTomb.length; i++) {
-        if (vizsgaltTomb[i].nev == orszagNeve) {
-            return true;
+function SzerepelEAdottOrszag(vizsgaltAdatok, keresendoCsapat) {
+    var keresettOrszag = OrszagNevKiolvas();
+    for (var i = 0; i < vizsgaltAdatok.length; i++) {
+        if (vizsgaltAdatok[i].nev == keresettOrszag) {
+            return [true, keresendoCsapat];
         }
     }
-    return false;
+    return [false, keresendoCsapat];
 }
 //Eredmény megjelenítése
 function SzerepelEAdottOrszagKiir() {
     var keresettOrszag = OrszagNevKiolvas();
     var szerepeltE = SzerepelEAdottOrszag(fifaAdatok, keresettOrszag);
-    if (szerepeltE == true) {
+    if (szerepeltE[0]) {
         var szerepelEOrszag = document.querySelector("#f5");
         szerepelEOrszag.innerHTML = "".concat(keresettOrszag, " szerepel a fifa ranglist\u00E1n");
     }

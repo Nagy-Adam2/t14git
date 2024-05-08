@@ -5,7 +5,8 @@ interface FifaAdat {
     pont: number
 };
 
-const csapatAdat: any[] = [
+
+const csapatAdat: string[] = [
     "Anglia;4;0;1662", 
     "Argentína;10;0;1614", 
     "Belgium;1;0;1752", 
@@ -28,27 +29,30 @@ const csapatAdat: any[] = [
     "Uruguay;6;-1;1639"
 ];
 
-function ObjektumFeltolto(feltoltendoElem: any[]) {
-    let beolvasottAdatok: any[] = [];
-    for (let i = 0; i < feltoltendoElem.length; i++) {
-        let objektum: FifaAdat | any = {};
+
+function ObjektumFeltolto(feltoltendoElem: string[]): FifaAdat[] {
+    let beolvasottAdatok: FifaAdat[] = [];
+    for (let i: number = 0; i < feltoltendoElem.length; i++) {
         let daraboltSor = feltoltendoElem[i].split(";");
-        objektum.nev = daraboltSor[0];
-        objektum.helyezes = Number(daraboltSor[1]);
-        objektum.valtozas = Number(daraboltSor[2]);
-        objektum.pont = Number(daraboltSor[3]);
+        let objektum: FifaAdat = {
+          nev: daraboltSor[0],
+          helyezes: Number(daraboltSor[1]),
+          valtozas: Number(daraboltSor[2]),
+          pont: Number(daraboltSor[3])
+        };
         beolvasottAdatok.push(objektum);
     }
     return beolvasottAdatok;
 }
 
-const fifaAdatok = ObjektumFeltolto(csapatAdat);
+
+const fifaAdatok: FifaAdat[] = ObjektumFeltolto(csapatAdat);
 
 
-function fifaTablazatGenerator(adatTabla: any) {
-    let tabla: any = document.querySelector("#fifaTabla");
+function fifaTablazatGenerator(adatTabla: FifaAdat[] | any[]): void {
+    let tabla: HTMLTableElement = <HTMLTableElement>document.querySelector("#fifaTabla");
     for (let i = adatTabla.length - 1; i >= 0; i--) {
-        var adatSor = tabla.insertRow(1);
+        let adatSor = tabla.insertRow(1);
         let orszagNev = adatSor.insertCell(0);
         let helyezes = adatSor.insertCell(1);
         let rangValtozas = adatSor.insertCell(2);
@@ -59,43 +63,67 @@ function fifaTablazatGenerator(adatTabla: any) {
         pontszam.innerHTML = adatTabla[i].pont;
     }
 }
+
+
 fifaTablazatGenerator(fifaAdatok);
 
+
+
+
+
 //1. feladat - Adja meg aktuálisan hány csapat szerepel a ranglistán
+
+
 //Eredmény kiszámolása
-function CsapatokSzama(vizsgaltTomb: any[]) {
+
+function CsapatokSzama(vizsgaltTomb: FifaAdat[]): number {
     return vizsgaltTomb.length;
 }
+
+
 //Eredmény megjelenítése
+
 function CsapatokSzamaKiir() {
-    let csapatokSzama: HTMLElement | any = document.querySelector("#f1");
-    let kiirandoErtek = CsapatokSzama(fifaAdatok);
+    let csapatokSzama: HTMLElement = <HTMLElement>document.querySelector("#f1");
+    let kiirandoErtek: number = CsapatokSzama(fifaAdatok);
     csapatokSzama.innerHTML = "A ranglistában szereplő csapatok mennyisége: " + kiirandoErtek;
 }
+
+
 //Esemény hozzárendelése
-let f1eventGomb: HTMLElement | any = document.querySelector("#f1feladat");
+
+let f1eventGomb: HTMLElement = <HTMLElement>document.querySelector("#f1feladat");
 f1eventGomb.addEventListener("click", CsapatokSzamaKiir);
 
 
 
 
 //2. feladat - Írja ki mennyi a résztvevő csapatok átlagpontszáma
+
+
 //Eredmény kiszámolása
-function PontszamokAtlaga(vizsgaltTomb: any[]) {
+
+function PontszamokAtlaga(vizsgaltTomb: FifaAdat[]): number {
     let osszeg: number = 0;
-    for (let i = 0; i < vizsgaltTomb.length; i++) {
+    for (let i: number = 0; i < vizsgaltTomb.length; i++) {
         osszeg += vizsgaltTomb[i].pont;
     }
     return Math.round(osszeg / vizsgaltTomb.length);
 }
+
+
 //Eredmény megjelenítése
+
 function PontszamokAtlagaKiir() {
-    let pontszamokAtlaga: HTMLElement | any = document.querySelector("#f2");
-    let kiirandoErtek = PontszamokAtlaga(fifaAdatok);
+    let pontszamokAtlaga: HTMLElement = <HTMLElement>document.querySelector("#f2");
+    let kiirandoErtek: number = PontszamokAtlaga(fifaAdatok);
     pontszamokAtlaga.innerHTML = "A ranglistán szereplő csapatok átlagos pontszáma: " + kiirandoErtek;
 }
+
+
 //Esemény hozzárendelése
-let f2eventGomb: HTMLElement | any = document.querySelector("#f2feladat");
+
+let f2eventGomb: HTMLElement = <HTMLElement>document.querySelector("#f2feladat");
 f2eventGomb.addEventListener("click", PontszamokAtlagaKiir);
 
 
@@ -103,30 +131,35 @@ f2eventGomb.addEventListener("click", PontszamokAtlagaKiir);
 
 //3. feladat - Listázza ki azokat a csapatokat, akik az átlagnál több pontot értek el!
 
+
 //Eredmény kiszámolása
-function AtlagFelettiek(vizsgaltTomb: any) {
-    let atlagPont: any = PontszamokAtlaga(fifaAdatok);
-    let atlagFelettiek: any[] = [];
+
+function AtlagFelettiek(vizsgaltTomb: FifaAdat[]): string[] {
+    let atlagPont: number = PontszamokAtlaga(fifaAdatok);
+    let atlagFelettiek: string[] = [];
     for (let i = 0; i < vizsgaltTomb.length; i++) {
         if (vizsgaltTomb[i].pont > atlagPont) {
-            let aktCsapatInfo: FifaAdat | any = {};
-            aktCsapatInfo.neve = vizsgaltTomb[i].nev;
-            aktCsapatInfo.helyezese = vizsgaltTomb[i].helyezes;
-            aktCsapatInfo.rangja = vizsgaltTomb[i].valtozas;
-            aktCsapatInfo.pontja = vizsgaltTomb[i].pont;
+            let aktCsapatInfo: any = {
+                neve: vizsgaltTomb[i].nev,
+                helyezese: vizsgaltTomb[i].helyezes,
+                rangja: vizsgaltTomb[i].valtozas,
+                pontja: vizsgaltTomb[i].pont
+            };
             atlagFelettiek.push(aktCsapatInfo);
         }
     }
     return atlagFelettiek;
 }
 
+
 //Eredmény megjelenítése
+
 function AtlagFelettiTablazatGenerator() {
-    let atlagFelettiekTabla: any = AtlagFelettiek(fifaAdatok);
-    let tabla: HTMLElement | any = document.querySelector("#atlagTabla");
+    let atlagFelettiekTabla: string[] | any = AtlagFelettiek(fifaAdatok);
+    let tabla: HTMLTableElement = <HTMLTableElement>document.querySelector("#atlagTabla");
 
     for (let i = atlagFelettiekTabla.length - 1; i >= 0; i--) {
-        var adatSor = tabla.insertRow(1);
+        let adatSor = tabla.insertRow(1);
         let orszagNev = adatSor.insertCell(0);
         let helyezes = adatSor.insertCell(1);
         let rangValtozas = adatSor.insertCell(2);
@@ -137,79 +170,102 @@ function AtlagFelettiTablazatGenerator() {
         pontszam.innerHTML = atlagFelettiekTabla[i].pontja;
     }
 }
+
+
 //Esemény hozzárendelése
-let f3eventGomb: HTMLElement | any = document.querySelector("#f3feladat");
+
+let f3eventGomb: HTMLElement = <HTMLElement>document.querySelector("#f3feladat");
 f3eventGomb.addEventListener("click", AtlagFelettiTablazatGenerator);
 
 
 
 
 //4. feladat - Írja ki a legtöbbet javító csapat adatait: Helyezés, CsapatNeve, Pontszáma
+
+
 //Eredmény kiszámolása
 
-function LegtobbetJavitoIndex(vizsgaltTomb: any) {
+function LegtobbetJavitoIndex(vizsgaltTomb: FifaAdat[]): number {
     let kivalasztottCsapatIndex: number = 0;
-    for (let i = 0; i < vizsgaltTomb.length; i++) {
+    for (let i: number = 0; i < vizsgaltTomb.length; i++) {
         if (vizsgaltTomb[i].valtozas > vizsgaltTomb[kivalasztottCsapatIndex].valtozas) {
             kivalasztottCsapatIndex = i;
         }
     }
     return kivalasztottCsapatIndex;
 }
+
+
 //Eredmény megjelenítése
+
 function LegtobbetJavitoIndexKiir() {
-    let legtobbetJavitoIndex: HTMLElement | any = document.querySelector("#f4");
-    let kiirandoErtek: any = LegtobbetJavitoIndex(fifaAdatok);
+    let legtobbetJavitoIndex: HTMLElement = <HTMLElement>document.querySelector("#f4");
+    let kiirandoErtek: number = LegtobbetJavitoIndex(fifaAdatok);
     legtobbetJavitoIndex.innerHTML = `A legtöbbet javító csapat: ${fifaAdatok[kiirandoErtek].helyezes}. ${fifaAdatok[kiirandoErtek].nev} (${fifaAdatok[kiirandoErtek].pont})`;
 }
+
+
 //Esemény hozzárendelése
-let f4eventGomb: HTMLElement | any  = document.querySelector("#f4feladat");
+
+let f4eventGomb: HTMLElement = <HTMLElement>document.querySelector("#f4feladat");
 f4eventGomb.addEventListener("click", LegtobbetJavitoIndexKiir);
+
+
+
 
 //5. feladat -Határozza meg a adatok közöt megtalálható-e Magyarország csapata! 
 
 //Adat kiolvasása
-function OrszagNevKiolvas() {
-    let orszagNev: HTMLInputElement | any = document.querySelector("#orszagNeve")?.nodeValue;
+
+function OrszagNevKiolvas(): string {
+    let orszagNev: HTMLInputElement | any = (document.querySelector("#orszagNeve") as HTMLInputElement).value;
     return orszagNev;
 }
 
-//Eredmény kiszámolása
-//Fejlesztési lehetőség: Bármely csapatot megnézni, szerepelt-e a listán
-function SzerepelEAdottOrszag(vizsgaltTomb: any, orszagNeve: any) {
-    for (let i = 0; i < vizsgaltTomb.length; i++) {
-        if (vizsgaltTomb[i].nev == orszagNeve) {
-            return true;
+
+function SzerepelEAdottOrszag(vizsgaltAdatok: FifaAdat[], keresendoCsapat: string): [boolean, string] {
+    let keresettOrszag: string = OrszagNevKiolvas();
+    for (let i: number = 0; i < vizsgaltAdatok.length; i++) {
+        if (vizsgaltAdatok[i].nev == keresettOrszag) {
+            return [true, keresendoCsapat];
         }
     }
-    return false;
+    return [false, keresendoCsapat];
 }
 
+
 //Eredmény megjelenítése
-function SzerepelEAdottOrszagKiir() {
-    let keresettOrszag: any = OrszagNevKiolvas();
-    let szerepeltE: any = SzerepelEAdottOrszag(fifaAdatok, keresettOrszag);
-    if (szerepeltE == true) {
-        let szerepelEOrszag: HTMLElement | any = document.querySelector("#f5");
+
+function SzerepelEAdottOrszagKiir(): void {
+    let keresettOrszag: string = OrszagNevKiolvas();
+    let szerepeltE = SzerepelEAdottOrszag(fifaAdatok, keresettOrszag);
+    if (szerepeltE[0]) {
+        let szerepelEOrszag: HTMLElement = <HTMLElement>document.querySelector("#f5");
         szerepelEOrszag.innerHTML = `${keresettOrszag} szerepel a fifa ranglistán`;
     }
     else {
-        let szerepelEOrszag: HTMLElement | any = document.querySelector("#f5");
+        let szerepelEOrszag: HTMLElement = <HTMLElement>document.querySelector("#f5");
         szerepelEOrszag.innerHTML = `${keresettOrszag} NEM szerepel a fifa ranglistán`;
     }
 }
 
+
 //Esemény hozzárendelése
-let f5eventGomb: HTMLElement | any = document.querySelector("#f5feladat");
+
+let f5eventGomb: HTMLElement = <HTMLElement>document.querySelector("#f5feladat");
 f5eventGomb.addEventListener("click", SzerepelEAdottOrszagKiir);
+
+
 
 
 //6. feladat - Készítsen  statisztikát  a  helyezések  változása  (Valtozas)  alapján  csoportosítva  a  csapatok számáról!
 
+
 //Eredmény kiszámolása
-function ValtozasTipusok(vizsgaltTomb: any[]) {
-    let valtozasTipusok: any[] = [];
-    for (let i = 0; i < vizsgaltTomb.length; i++) {
+
+function ValtozasTipusok(vizsgaltTomb: FifaAdat[]): number[] {
+    let valtozasTipusok: number[] = [];
+    for (let i: number = 0; i < vizsgaltTomb.length; i++) {
         let szerepelE: boolean = false;
         for (let j = 0; j < valtozasTipusok.length; j++) {
             if (vizsgaltTomb[i].valtozas == valtozasTipusok[j]) {
@@ -222,13 +278,15 @@ function ValtozasTipusok(vizsgaltTomb: any[]) {
     }
     return valtozasTipusok;
 }
-function ValtozasMennyisegek(vizsgaltTomb: any[], valtozasTipusok: any[]) {
-    let valtozasMennyisegek: any[] = [];
-    for (let i = 0; i < valtozasTipusok.length; i++) {
+
+
+function ValtozasMennyisegek(vizsgaltTomb: FifaAdat[], valtozasTipusok: number[]): number[] {
+    let valtozasMennyisegek: number[] = [];
+    for (let i: number = 0; i < valtozasTipusok.length; i++) {
         valtozasMennyisegek.push(0);
     }
-    for (let i = 0; i < vizsgaltTomb.length; i++) {
-        for (let j = 0; j < valtozasTipusok.length; j++) {
+    for (let i: number = 0; i < vizsgaltTomb.length; i++) {
+        for (let j: number = 0; j < valtozasTipusok.length; j++) {
             if (vizsgaltTomb[i].valtozas == valtozasTipusok[j]) {
                 valtozasMennyisegek[j]++;
             }
@@ -239,13 +297,14 @@ function ValtozasMennyisegek(vizsgaltTomb: any[], valtozasTipusok: any[]) {
 
 
 //Eredmény megjelenítése
+
 function StatitsztikaTablazatGenerator() {
-    let valtozasok: any = ValtozasTipusok(fifaAdatok);
-    let valtozasokMennyisege: any = ValtozasMennyisegek(fifaAdatok, valtozasok);
+    let valtozasok: number[] = ValtozasTipusok(fifaAdatok);
+    let valtozasokMennyisege: number[] = ValtozasMennyisegek(fifaAdatok, valtozasok);
 
-    let tabla: HTMLElement | any = document.querySelector("#statisztikaTabla");
+    let tabla: HTMLTableElement | any = document.querySelector("#statisztikaTabla");
 
-    for (let i = valtozasok.length - 1; i >= 0; i--) {
+    for (let i: number = valtozasok.length - 1; i >= 0; i--) {
         var adatSor = tabla.insertRow(1);
         let valtozasokErtek = adatSor.insertCell(0);
         let valtozasokMennyiseg = adatSor.insertCell(1);
@@ -254,65 +313,89 @@ function StatitsztikaTablazatGenerator() {
     }
 }
 
+
 //Esemény hozzárendelése
-let f6eventGomb: HTMLElement | any = document.querySelector("#f6feladat");
+
+let f6eventGomb: HTMLElement = <HTMLElement>document.querySelector("#f6feladat");
 f6eventGomb.addEventListener("click", StatitsztikaTablazatGenerator);
+
+
 
 
 //NAVIGÁCIÓS SÁV-ot MŰKÖDTETŐ ELEMEK
 
-function feladatMutat(feladatAzonosito: any) {
-    for (let i = 0; i <= 6; i++) {
+function feladatMutat(feladatAzonosito: number) {
+    for (let i: number = 0; i <= 6; i++) {
         if (i != feladatAzonosito) {
-            let navigaciotMegjelenit: HTMLElement | any = document.querySelector(`#feladatBlokk0${i}`);
+            let navigaciotMegjelenit: HTMLElement = <HTMLElement>document.querySelector(`#feladatBlokk0${i}`);
             navigaciotMegjelenit.style.display = "none";
         }
         else {
-            let navigaciotMegjelenit: HTMLElement | any = document.querySelector(`#feladatBlokk0${i}`);
+            let navigaciotMegjelenit: HTMLElement = <HTMLElement>document.querySelector(`#feladatBlokk0${i}`);
             navigaciotMegjelenit.style.display = "block";
         }
     }
 }
+
+
 function F0mutat() {
     feladatMutat(0);
 }
-let g0event: HTMLElement | any = document.querySelector("#g0");
+
+
+let g0event: HTMLElement = <HTMLElement>document.querySelector("#g0");
 g0event.addEventListener("click", F0mutat);
 
 
 function F1mutat() {
     feladatMutat(1);
 }
-let g1event: HTMLElement | any = document.querySelector("#g1");
+
+
+let g1event: HTMLElement = <HTMLElement>document.querySelector("#g1");
 g1event.addEventListener("click", F1mutat);
 
 
 function F2mutat() {
     feladatMutat(2);
 }
-let g2event: HTMLElement | any = document.querySelector("#g2");
+
+
+let g2event: HTMLElement = <HTMLElement>document.querySelector("#g2");
 g2event.addEventListener("click", F2mutat);
+
 
 function F3mutat() {
     feladatMutat(3);
 }
-let g3event: HTMLElement | any = document.querySelector("#g3");
+
+
+let g3event: HTMLElement = <HTMLElement>document.querySelector("#g3");
 g3event.addEventListener("click", F3mutat);
+
 
 function F4mutat() {
     feladatMutat(4);
 }
-let g4event: HTMLElement | any = document.querySelector("#g4");
+
+
+let g4event: HTMLElement = <HTMLElement>document.querySelector("#g4");
 g4event.addEventListener("click", F4mutat);
+
 
 function F5mutat() {
     feladatMutat(5);
 }
-let g5event: HTMLElement | any = document.querySelector("#g5");
+
+
+let g5event: HTMLElement = <HTMLElement>document.querySelector("#g5");
 g5event.addEventListener("click", F5mutat);
+
 
 function F6mutat() {
     feladatMutat(6);
 }
-let g6event: HTMLElement | any = document.querySelector("#g6");
+
+
+let g6event: HTMLElement = <HTMLElement>document.querySelector("#g6");
 g6event.addEventListener("click", F6mutat);
