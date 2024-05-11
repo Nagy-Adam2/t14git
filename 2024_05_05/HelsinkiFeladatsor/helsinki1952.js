@@ -21,11 +21,11 @@ console.log(helsinkiAdatok);
 // megszámlálás, hogy hány elem van benne vagyis soronként
 console.log("3.) feladat:");
 function hanyPontszerzoHelyezes(vizsgaltTomb) {
-    var osszeg = 0;
+    var pontszerzoHelyezesekSzama = 0;
     for (var i = 0; i < vizsgaltTomb.length; i++) {
-        osszeg += vizsgaltTomb[i].helyezes;
+        pontszerzoHelyezesekSzama++;
     }
-    return osszeg;
+    return pontszerzoHelyezesekSzama;
 }
 console.log("Pontszerző helyezések száma: " + hanyPontszerzoHelyezes(helsinkiAdatok));
 /* 4.) feladat */
@@ -34,32 +34,29 @@ function megszerzettErmekSzama(vizsgaltTomb) {
     var aranyErmekSzama = 0;
     var ezustErmekSzama = 0;
     var bronzErmekSzama = 0;
+    var osszesErmekSzama = 0;
     for (var i = 0; i < vizsgaltTomb.length; i++) {
-        if (vizsgaltTomb[i].helyezes == 6) {
+        if (vizsgaltTomb[i].helyezes == 1) {
             aranyErmekSzama++;
         }
-    }
-    for (var i = 0; i < vizsgaltTomb.length; i++) {
-        if (vizsgaltTomb[i].helyezes == 5) {
+        if (vizsgaltTomb[i].helyezes == 2) {
             ezustErmekSzama++;
         }
-    }
-    for (var i = 0; i < vizsgaltTomb.length; i++) {
-        if (vizsgaltTomb[i].helyezes == 4) {
+        if (vizsgaltTomb[i].helyezes == 3) {
             bronzErmekSzama++;
         }
     }
-    return [aranyErmekSzama, ezustErmekSzama, bronzErmekSzama];
+    osszesErmekSzama = aranyErmekSzama + ezustErmekSzama + bronzErmekSzama;
+    return [aranyErmekSzama, ezustErmekSzama, bronzErmekSzama, osszesErmekSzama];
 }
 function megszerzettErmekSzamaKiir(osszesErmekSzama) {
     console.log("Arany: " + osszesErmekSzama[0]);
     console.log("Ezüst: " + osszesErmekSzama[1]);
     console.log("Bronz: " + osszesErmekSzama[2]);
-    console.log("Összes: " + (osszesErmekSzama[0]) + osszesErmekSzama[1] + osszesErmekSzama[2]);
+    console.log("Összesen: " + osszesErmekSzama[3]);
 }
-console.log(megszerzettErmekSzamaKiir(megszerzettErmekSzama(helsinkiAdatok)));
+megszerzettErmekSzamaKiir(megszerzettErmekSzama(helsinkiAdatok));
 /* 5.) feladat */
-console.log("5.) feladat:");
 function olimpiaiPont(helyezes) {
     if (helyezes == 1) {
         return 7;
@@ -91,11 +88,12 @@ function olimpiaiPontokOsszege(vizsgaltAdatok) {
     return osszPont;
 }
 function olimpiaiPontokOsszegeKiir(kiirandoAdat) {
-    console.log("5. feladat:");
+    console.log("5.) feladat:");
     console.log("Olimpiai pontok száma: " + kiirandoAdat);
 }
 olimpiaiPontokOsszegeKiir(olimpiaiPontokOsszege(helsinkiAdatok));
 /* 6.) feladat */
+console.log("6.) feladat:");
 function univerzalisEremszamOsszehasonlito(vizsgaltAdatok, elsoSportagNeve, masodikSportagNeve) {
     var sportagEgyMennyiseg = 0;
     var sportagKettoMennyiseg = 0;
@@ -119,7 +117,6 @@ function univerzalisEremszamOsszehasonlito(vizsgaltAdatok, elsoSportagNeve, maso
     }
 }
 function univerzalisEremszamOsszehasonlitoKiir(kiirandoAdat) {
-    console.log("6. feladat:");
     if (kiirandoAdat == "-") {
         console.log("Egyenlő volt az érmek száma");
     }
@@ -175,7 +172,7 @@ function legtobbSportolo(vizsgaltAdatok) {
     return legtobbSportoloIndex;
 }
 function legtobbSportoloKiir(vizsgaltAdatok, csoportIndex) {
-    console.log("8.feladat:");
+    console.log("8.) feladat:");
     console.log("Helyezés: " + vizsgaltAdatok[csoportIndex].helyezes);
     console.log("Sportág: " + vizsgaltAdatok[csoportIndex].sportagNeve);
     console.log("Versenyszám: " + vizsgaltAdatok[csoportIndex].versenyszamNeve);
